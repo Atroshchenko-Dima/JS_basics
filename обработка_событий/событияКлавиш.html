@@ -1,0 +1,22 @@
+<p>Если нажать клавишу V, то эта страница станет фиолетовой</p>
+<script> //При нажатии клавиши браузер активирует событие "keydown". Когда пользователь отпускает клавишу, активируется событие "keyup"
+    window.addEventListener("keydown", event => {
+        if (event.key == "v") {
+            document.body.style.background = "violet";
+        }
+    });
+    window.addEventListener("keyup", event => {
+        if (event.key == "v") {
+            document.body.style.background = "";
+        }
+    });
+</script>
+
+<p> Для продолжения нажмите пробел</p>
+<script>
+    window.addEventListener("keydown", event => {
+        if (event.key == " " && event.ctrlKey) { // узнать была ли нажата клавиша
+            alert("Продолжаем");
+        }
+    });
+</script>

@@ -1,0 +1,11 @@
+<p style = "border: 3px solid red">
+    Я в рамке
+</p>
+
+<!--offsetHeight and offsetWeight содержат информацию о пространстве, занимаемом объектом в пикселах -->
+<!--clientHeight and clienttWeight содержат данные о размере пространства внутри элемента, без учета ширины рамки -->
+<script>
+    let para = document.body.getElementsByTagName("p")[0];
+    console.log("clientHeight:", para.clientHeight);
+    console.log("offsetHeight:", para.ofssetHeight);
+</script>

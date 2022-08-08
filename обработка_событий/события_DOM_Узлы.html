@@ -1,0 +1,18 @@
+<!--<button>Щелкни здесь</button>
+<p>Здесь нет обработчика</p>
+<script>
+    let button = document.querySelector("button");
+    button.addEventListener("click", () => {
+        alert("Кнопка нажата");
+    });
+</script>-->
+
+<button>Одноразовая кнопка</button>
+<script>
+    let button = document.querySelector("button");
+    function once() {
+        alert("Готово");
+        button.removeEventListener("click", once); // удаляет обработчик после первого нажатия
+    }
+    button.addEventListener("click", once); // добавляет обработчик на 1 нажатие
+</script>

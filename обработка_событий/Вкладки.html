@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<div id="wrapper">
+  <div data-tabname="one">Tab one</div>
+  <div data-tabname="two">Tab two</div>
+  <div data-tabname="three">Tab three</div>
+</div>
+<script>
+  function asTabs(node) {
+    // строит массив, содержащий дочерние элементы узла
+    var childElements = document.querySelectorAll('[data-tabname]');
+    var tabs = [];
+    for (var i = 0; i < childElements.length; i++) {
+      tabs.push(childElements[i]);
+    }
+    
+    // строит и добавляет список элементов <button>
+    var buttonList = document.createElement('div');
+    tabs.forEach(function(tab, index) {
+      var button = document.createElement('button');
+      var buttonText = document.createTextNode(tab.dataset.tabname);
+      button.appendChild(buttonText);
+      buttonList.appendChild(button);
+      button.addEventListener('click', function() {
+        selectTab(index);
+      });
+    });
+    node.insertBefore(buttonList, node.firstChild);
+    
+    // функция, которую будет вызывать прослушиватель событий
+    function selectTab(index) {
+        tabs.forEach(function(tab, i) {
+          if (index == i) {
+            tab.style.display = '';
+          } else {
+            tab.style.display = 'none';
+          }
+        });
+      } 
+      
+    selectTab(0); // для первоначального отображения первой вкладки
+  }
+   
+  asTabs(document.querySelector("#wrapper"));
+</script>

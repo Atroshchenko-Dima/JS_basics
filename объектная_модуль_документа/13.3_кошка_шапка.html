@@ -1,0 +1,26 @@
+<img src="http://eloquentjavascript.net/img/cat.png" id="cat" style="position: absolute">
+<img src="http://eloquentjavascript.net/img/hat.png" id="hat" style="position: absolute">
+
+<!-- Где и кот, и его шляпа вращаются на противоположных сторонах эллипса -->
+<script>
+    var cat = document.querySelector("#cat");
+    var hat = document.querySelector("#hat");
+  
+    var angle = 0, lastTime = null;
+    function animate(time) {
+      if (lastTime != null)
+        angle += (time - lastTime) * 0.0015;
+      lastTime = time;
+  
+      cat.style.top = (Math.sin(angle) * 200 + 200) + "px";
+      cat.style.left = (Math.cos(angle) * 400 + 400) + "px";
+      // Если к углу прибавить π, то шляпа окажется на полкруга впереди кота.
+      var hatAngle = angle + Math.PI;
+      hat.style.top = (Math.sin(hatAngle) * 200 + 200) + "px";
+      hat.style.left = (Math.cos(hatAngle) * 100 + 400) + "px";
+  
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script> 
+

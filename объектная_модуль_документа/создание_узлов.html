@@ -1,0 +1,41 @@
+<!-- Сценарий замены изображений текстом -->
+
+<!-- в атрибуте img вставка изображений, в атрибуте alt - альтернативное текстовое представление изображения -->
+<p>The <img src="cat.png" style="position: relative" alt="Cat"> in the 
+    <img src="hat.png" alt="Hat">.</p> <!-- The Cat in the Hat(вывод в браузер) -->
+  
+  <p><button onclick="replaceImages()">Replace</button></p>
+
+<!--У всех узлов элементов есть getElementsByTagName метод, который собирает все элементы с заданным именем 
+тега, которые являются потомками (прямыми или косвенными дочерними элементами) этого узла, и возвращает их
+как объект, подобный массиву. -->
+<!--Принимая на входе строку, createTextNodе возвращает текстовый узел, который мы можем вставить в документ,
+чтобы он отображался на экране.-->
+<!-- цикл перебирающий изображения, начинает с конца списка, т.к методы подобные getElementsByTagName - динамические-->
+
+<script>
+  let cat = document.querySelector("img");
+  let angle = Math.PI / 2;
+  function animate(time, lastTime) {
+    if (lastTime != null) {
+      angle += (time - lastTime) * 0.001;
+    }
+    cat.style.top = (Math.sin(angle) * 20) + "px";
+    cat.style.left = (Math.cos(angle) * 50) + "px";
+    requestAnimationFrame(newTime => animate(newTime, time)); 
+  }
+  requestAnimationFrame(animate);
+</script>
+
+  <script>
+    function replaceImages() {
+      let images = document.body.getElementsByTagName("img"); 
+      for (let i = images.length - 1; i >= 0; i--) {
+        let image = images[i];
+        if (image.alt) {
+          let text = document.createTextNode(image.alt); 
+          image.parentNode.replaceChild(text, image);
+        }
+      }
+    }
+  </script>

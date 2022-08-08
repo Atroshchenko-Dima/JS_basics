@@ -1,0 +1,20 @@
+<style>
+    #progress {
+      border-bottom: 2px solid blue;
+      width: 0;
+      position: fixed;
+      top: 0; left: 0;
+    }
+  </style>
+  <div id="progress"></div>
+  <script>
+    // Create some content
+    document.body.appendChild(document.createTextNode(
+      "supercalifragilisticexpialidocious ".repeat(1000)));
+  
+    let bar = document.querySelector("#progress");
+    window.addEventListener("scroll", () => {
+      let max = document.body.scrollHeight - innerHeight; // innerHeight дает высоту окна, которую нужно вычесть из общей высоты прокрутки - мы не сможем продолжать прокрутку, когда дойдем до низа документа
+      bar.style.width = `${(pageYOffset / max) * 100}%`; // pageYOffset - текущая позиция прокрутки, делим на максимальную позицию и умножаем на 100 - получаем процент для индикатора выполнения
+    });
+  </script>

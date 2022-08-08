@@ -1,0 +1,44 @@
+<!--Поля, созданные с помощью тегов <textarea> или <input> с типом text или password, имеют общий интерфейс. 
+Их элементы DOM имеют value свойство, которое хранит их текущее содержимое в виде строкового значения. 
+Установка для этого свойства другой строки изменяет содержимое поля.-->
+
+<!--Свойства selectionStartи selectionEndтекстовых полей дают нам информацию о курсоре и выделении в тексте. Когда ничего не выбрано,
+эти два свойства содержат один и тот же номер, указывающий положение курсора. Например, 0 указывает на начало текста, а 10 указывает на то,
+что курсор находится после 10-го символа. Когда выделена часть поля, два свойства будут различаться, давая нам начало и конец выделенного
+текста. Например value, эти свойства также могут быть записаны.
+Представьте, что вы пишете статью о Хасехемви, но не можете правильно написать его имя. Следующий код связывает <textarea> тег с
+обработчиком событий, который при нажатии F2 вставляет для вас строку «Khasekhemwy».-->
+
+<textarea></textarea>
+
+<script>
+    let textarea = document.querySelector("textarea")
+    textarea.addEventListener("keydown", event => {
+        // Код клавиши для F12 = 113
+        if(event.keyCode == 113) {
+            replaceSelection(textarea, "Khasekhemwy")
+            event.preventDefault();
+        }
+    });
+    /*  функция replaceSelection заменяет текущую выделенную часть содержимого текстового поля заданным словом, а затем ставит курсор
+    чтоб пользователь мог продолжить вводить текст*/
+    function replaceSelection(field, word) {
+    let from = field.selectionStart, to = field.selectionEnd;
+    field.value = field.value.slice(0, from) + word +
+                  field.value.slice(to);
+    // Put the cursor after the word
+    field.selectionStart = from + word.length;
+    field.selectionEnd = from + word.length;
+  }
+</script>
+
+<!--В следующем примере показаны текстовое поле и счетчик, отображающий 
+текущую длину текста в этом поле:-->
+<input type="text"> длина: <span id="length">0</span>
+<script>
+    let text = document.querySelector('input');
+    let output = document.querySelector('#length');
+    text.addEventListener('input', () => {
+        output.textContent = text.value.length;
+    });
+</script>

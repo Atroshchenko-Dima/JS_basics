@@ -1,0 +1,27 @@
+<!--Теги <option> для поля <select> могут быть доступны как массивоподобный объект через свойство поля options. 
+У каждого варианта есть свойство selected, которое указывает, выбран ли этот вариант в данный момент.  
+Это свойство также можно указать специально, чтобы выбрать или отменить выбор определенного варианта. 
+В следующем примере извлекаются выбранные значения из поля выбора 
+с активированным параметром mul tiple и затем используются для составления двоичного числа из отдельных битов. Чтобы выбрать несколько 
+вариантов, удерживайте нажатой клавишу Control (или Command на Мае). -->
+
+<select multiple> <!--можно выбрать любое количество, а не один вариант-->
+<option value="1">0001</option>
+<option value="2">0010</option>
+<option value="4">0100</option>
+<option value="8">1008</option>
+</select> = <span id="output">0</span>
+
+<script>
+    let select = document.querySelector("select");
+    let output = document.querySelector("#output");
+    select.addEventListener("change", () => {
+        let number = 0;
+        for (let option of Array.from(select.options)) {
+            if (option.selected) {
+                number += Number(option.value);
+            }
+        }
+        output.textContent = number;
+    });
+</script>

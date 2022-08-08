@@ -1,0 +1,12 @@
+<p>Абзац с <button>кнопкой</button>.</p>
+<script>
+    let para = document.querySelector("p");
+    let button = document.querySelector("button");
+    para.addEventListener("mousedown", () => {
+        alert("Обработчик для абзаца");
+    });
+    button.addEventListener("mousedown", () => {
+        alert("Обработчик для кнопки");
+        if (event.button == 2) event.stopPropagation(); // если нажать правой кнопкой мыши, то благодаря stopPropagation вылазит один обработчик, если другой кнопкой, то оба
+    });
+</script>

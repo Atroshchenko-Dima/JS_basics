@@ -1,0 +1,41 @@
+<!--Поле флажка является двоичным переключателем. Его значение можно извлечь или изменить через свойство selected, которое содержит
+логическое значение. -->
+
+<label>
+    <input type ="checkbox" id="purple"> сделать границу фиолетовой
+</label>
+
+<script>
+    let checkbox = document.querySelector("#purple")
+    checkbox.addEventListener("change", () => {
+        document.body.style.background = 
+            checkbox.checked ? "mediumpurple" : "";
+    });
+</script>
+
+<!--Тег <label> связывает часть документа с полем ввода. Если щелкнуть 
+в любом месте внутри тега <label>, то это поле активируется, на него перемещается фокус, а если это флажок или переключатель,
+то его значение переключается.-->
+
+
+<!--Переключатель похож на флажок, но он неявно связан с другими переключателями, имеющими тот же атрибут name, поэтому в любой момент только 
+один из группы переключателей может быть активным.-->
+
+Color:
+<label>
+  <input type="radio" name="color" value="orange"> Orange
+</label>
+<label>
+  <input type="radio" name="color" value="lightgreen"> Green
+</label>
+<label>
+  <input type="radio" name="color" value="lightblue"> Blue
+</label>
+<script>
+  let buttons = document.querySelectorAll("[name=color]"); // квдаратные скобки в CSS запросе используют для сопоставления атрибутов( у которых атрибут name имеет значение color)
+  for (let button of Array.from(buttons)) {
+    button.addEventListener("change", () => {
+      document.body.style.background = button.value;
+    });
+  }
+</script>

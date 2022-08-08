@@ -1,0 +1,27 @@
+<!--Для создания узлов элементов можно использовать метод. Этот метод принимает имя тега и возвращает
+новый пустой узел заданного типа.document.createElement. 
+В следующем примере определяется утилита elt, которая создает узел элемента и обрабатывает остальные аргументы
+как дочерние элементы этого узла. Затем эта функция используется для добавления авторства к цитате.-->
+
+<blockquote id="quote">
+    No book can ever be finished. While working on it we learn
+    just enough to find it immature the moment we turn away
+    from it.
+</blockquote>
+
+<script>
+function elt(type, ...children) {
+    let node = document.createElement(type);
+    for (let child of children) {
+        if (typeof child != "string") node.appendChild(child);
+        else node.appendChild(document.createTextNode(child));
+    }
+    return node;
+}
+document.getElementById("quote").appendChild(
+    elt("footer", "—",
+        elt("strong", "Карл Поппер"),
+        ", предисловие ко второму изданию ",
+        elt("em", "Открытое общество и его враги"),
+        ", 1950"));
+</script>
